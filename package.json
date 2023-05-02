@@ -1,0 +1,25 @@
+{
+  "name": "test-ui-playwright-specflow-dotnet",
+  "version": "0.0.0-development",
+  "description": "",
+  "private": "true",
+  "author": "Ian O Flynn",
+  "license": "",
+  "repository": "",
+  "devDependencies": {
+    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/exec": "github:semantic-release/exec",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^8.0.6",
+    "@semantic-release/npm": "^9.0.1",
+    "husky": "*",
+    "lint-staged": "*",
+    "semantic-release": "^19.0.5"
+  },
+  "dependencies": {
+    "@semantic-release/commit-analyzer": "github:semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator": "github:semantic-release/release-notes-generator",
+    "conventional-changelog-eslint": "*",
+    "nodeenv": "^3.0.75"
+  }
+}
