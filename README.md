@@ -33,6 +33,20 @@ dotnet test
 ```
 
 
+## Living docs
+
+Generate test report on living doc from feature-folder
+```bash
+livingdoc feature-folder D:\TestProject\SpecflowPlaywrightCD\src\PlaywrightCD.Tests.UI -t  D:\TestProject\SpecflowPlaywrightCD\src\PlaywrightCD.Tests.UI\bin\Debug\net6.0\TestExecution.json
+```
+
+Generate test report on living doc from Test-assembly
+```bash
+livingdoc test-assembly D:\TestProject\SpecflowPlaywrightCD\src\PlaywrightCD.Tests.UI\bin\Debug\net6.0\PlaywrightCD.Tests.UI.dll -t  D:\TestProject\SpecflowPlaywrightCD\src\PlaywrightCD.Tests.UI\bin\Debug\net6.0\TestExecution.json
+```
+
+
+
 ## Support
 
 Please create any support requests via a properly labeled issues in this repository.
