@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System;
+using FluentAssertions;
 using NUnit.Framework;
 using PlaywrightCD.Models;
 using PlaywrightCD.Pages;
@@ -8,6 +9,7 @@ using TechTalk.SpecFlow.Assist;
 using PlaywrightCD.Utils;
 using Microsoft.Playwright;
 using static Microsoft.Playwright.Assertions;
+using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 
 
 namespace PlaywrightCD.Tests.UI
@@ -65,5 +67,48 @@ namespace PlaywrightCD.Tests.UI
             var actualErrorMessage = await _loginPage.GetErrorMessage();
             actualErrorMessage.Should().Be("An invalid email and/or password has been entered. Please try again. Please note, passwords are case-sensitive.");
         }
+
+        [Given(@"I am on the registration page")]
+        public async Task GivenIAmOnTheRegistrationPage()
+        {
+            await _loginPage.RegistrationGoTo();
+        }
+
+        [When(@"I enter eamil and password details")]
+        public async Task WhenIEnterEamilAndPasswordDetails()
+        {
+            await _loginPage.CreateAnAccount();
+        }
+
+        [When(@"I click on the add you details button")]
+        public async Task WhenIClickOnTheAddYouDetailsButton()
+        {
+            await _loginPage.ClickAddYourDetailsButton();
+        }
+
+        [Then(@"I should see add your details page")]
+        public async Task ThenIShouldSeeAddYourDetailsPage()
+        {
+            await _loginPage.AssertAddYourDetails();
+        }
+
+        [When(@"I enter valid details on add your details page")]
+        public async Task WhenIEnterValidDetailsOnAddYourDetailsPage()
+        {
+            await _loginPage.AddYourDetails();
+        }
+
+        [When(@"I click on submit button")]
+        public async Task WhenIClickOnSubmitButton()
+        {
+            await _loginPage.ClickSubmitButton();
+        }
+
+        [Then(@"I should see welcome message")]
+        public async Task ThenIShouldSeeWelcomeMessage()
+        {
+            await _loginPage.AssertRegistrationSuccess();
+        }
+
     }
 }

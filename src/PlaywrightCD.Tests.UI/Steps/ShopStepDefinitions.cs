@@ -29,12 +29,13 @@ namespace PlaywrightCD.Tests.UI
             await _shopPage.GoTo();
         }
 
-        [When(@"I tpype keyword (.*) in search box")]
-        public async Task WhenITpypeKeywordInSearchBox(String item)
+
+        [When(@"I type keyword (.*) in search box")]
+        public async Task WhenITypeKeywordMilkInSearchBox(String item)
         {
             await _shopPage.SearchItem(item);
-
         }
+
 
         [Then(@"Eeach reuslt should  include keyword (.*)")]
         public  async Task ThenEeachReusltShouldIncludeKeyword(String item)
@@ -42,5 +43,32 @@ namespace PlaywrightCD.Tests.UI
             await _shopPage.AssertProductTitlesContainText(item);
 
         }
+
+
+        [When(@"I click Add to trolley on the first search result")]
+        public async Task WhenIClickAddToTrolleyOnTheFirstSearchResult()
+        {
+            await _shopPage.AddSecondItemToCart();
+        }
+
+        [Then(@"I should see sign in alert")]
+        public async Task ThenIShouldSeeSignInAlert()
+        {
+            await _shopPage.VerifySignInAlert();
+        }
+
+        [When(@"I click trolley button")]
+        public async Task WhenIClickTrolleyButton()
+        {
+            await _shopPage.ClickTrolley();
+        }
+
+        [When(@"I click Add to trolley on the first search result then I click trolley button")]
+        public async Task WhenIClickAddToTrolleyOnTheFirstSearchResultThenIClickTrolleyButton()
+        {
+            await _shopPage.AddFirstItemToCartAndCheckCart();
+        }
+
+
     }
 }

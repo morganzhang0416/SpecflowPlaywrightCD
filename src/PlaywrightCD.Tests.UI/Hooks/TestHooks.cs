@@ -19,7 +19,9 @@ namespace PlaywrightCD.Tests.UI.Hooks
         [BeforeScenario]
         public async Task BeforeScenarioAsync()
         {
+            
             var playwright = await Playwright.CreateAsync();
+            playwright.Selectors.SetTestIdAttribute("data-cy");
             var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
             {
                 Headless = ConfigurationService.GetWebSettings().HeadLess,
