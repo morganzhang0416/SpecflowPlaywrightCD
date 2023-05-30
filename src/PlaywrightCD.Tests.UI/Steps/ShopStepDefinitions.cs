@@ -9,6 +9,7 @@ using TechTalk.SpecFlow.Assist;
 using PlaywrightCD.Utils;
 using Microsoft.Playwright;
 using static Microsoft.Playwright.Assertions;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace PlaywrightCD.Tests.UI
 {
@@ -44,12 +45,15 @@ namespace PlaywrightCD.Tests.UI
 
         }
 
-
-        [When(@"I click Add to trolley on the first search result")]
-        public async Task WhenIClickAddToTrolleyOnTheFirstSearchResult()
+        [When(@"I click Add to trolley on the (.*) search result")]
+        public async Task WhenIClickAddToTrolleyOnTheSearchResult(int i)
         {
-            await _shopPage.AddSecondItemToCart();
+            await _shopPage.AddItemToCart(i);
+            await _shopPage.GetItemName(i);
+            await _shopPage.GetItemPrice(i);
         }
+
+
 
         [Then(@"I should see sign in alert")]
         public async Task ThenIShouldSeeSignInAlert()
@@ -60,13 +64,46 @@ namespace PlaywrightCD.Tests.UI
         [When(@"I click trolley button")]
         public async Task WhenIClickTrolleyButton()
         {
+            
             await _shopPage.ClickTrolley();
         }
 
-        [When(@"I click Add to trolley on the first search result then I click trolley button")]
-        public async Task WhenIClickAddToTrolleyOnTheFirstSearchResultThenIClickTrolleyButton()
+        [Then(@"I should see item added")]
+        public async Task ThenIShouldSeeItemAdded()
         {
-            await _shopPage.AddFirstItemToCartAndCheckCart();
+            await _shopPage.CheckTrolley();
+        }
+
+        [When(@"I click clearTrolleyButton")]
+        public async Task WhenIClickClearTrolleyButton()
+        {
+            await _shopPage.ClickClearTrolley();
+            await _shopPage.WaiclearTrolleyConfirm();
+            await _shopPage.ClickClearTrolleyConfirm();
+        }
+
+        [Then(@"I should see no items in trolley")]
+        public async Task ThenIShouldSeeNoItemsInTrolley()
+        {
+            await _shopPage.AssertNoItemsInTrolley();
+        }
+
+        [Given(@"I have searched for ""([^""]*)""")]
+        public async Task GivenIHaveSearchedFor(string item)
+        {
+            await _shopPage.SearchGoTo(item);
+        }
+
+        [When(@"I sort the results by ""([^""]*)""")]
+        public async Task WhenISortTheResultsBy(string value)
+        {
+            await _shopPage.SortByCondition(value);
+        }
+
+        [Then(@"I should see the milk sorted from ""([^""]*)""")]
+        public async Task ThenIShouldSeeTheMilkSortedFrom(string value)
+        {
+            await _shopPage.AssertSortedResult();
         }
 
 

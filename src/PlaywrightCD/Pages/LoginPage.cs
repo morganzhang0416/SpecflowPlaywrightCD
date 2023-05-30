@@ -106,6 +106,7 @@ namespace PlaywrightCD.Pages
             await EnterFirstName("Tom");
             await EnterLastName("Jackson");
             await EnterStreetAddress("13 Point Chevalier Road, Point Chevalier, Auckland 1022");
+            await Task.Delay(3000);
             await PressArrowDownKey();
             await PressEnterKey();
             await EnterPhoneNumber("0211866123");

@@ -116,8 +116,8 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("user add item to cart without sign in")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.TestCaseAttribute("milk", null)]
-        public void UserAddItemToCartWithoutSignIn(string item, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("milk", "2", null)]
+        public void UserAddItemToCartWithoutSignIn(string item, string nth, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "regression"};
@@ -128,6 +128,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("item", item);
+            argumentsOfScenario.Add("nth", nth);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("user add item to cart without sign in", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 15
 this.ScenarioInitialize(scenarioInfo);
@@ -146,7 +147,7 @@ this.ScenarioInitialize(scenarioInfo);
     testRunner.When(string.Format("I type keyword {0} in search box", item), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 18
-    testRunner.And("I click Add to trolley on the first search result", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And(string.Format("I click Add to trolley on the {0} search result", nth), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 19
     testRunner.Then("I should see sign in alert", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -158,8 +159,8 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("user add item to cart with sign in")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.TestCaseAttribute("milk", null)]
-        public void UserAddItemToCartWithSignIn(string item, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("milk", "2", null)]
+        public void UserAddItemToCartWithSignIn(string item, string nth, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "regression"};
@@ -170,6 +171,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("item", item);
+            argumentsOfScenario.Add("nth", nth);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("user add item to cart with sign in", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 26
 this.ScenarioInitialize(scenarioInfo);
@@ -197,16 +199,52 @@ this.ScenarioInitialize(scenarioInfo);
     testRunner.Then("the user should be logged in successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 32
-    testRunner.Given("I navigate to the website home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 33
     testRunner.When(string.Format("I type keyword {0} in search box", item), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
+#line 33
+    testRunner.And(string.Format("I click Add to trolley on the {0} search result", nth), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
 #line 34
-    testRunner.And("I click Add to trolley on the first search result then I click trolley button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("I click trolley button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 35
     testRunner.Then("I should see item added", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 36
+    testRunner.When("I click clearTrolleyButton", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 37
+    testRunner.Then("I should see no items in trolley", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Sort the product search results")]
+        public void SortTheProductSearchResults()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Sort the product search results", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 43
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 44
+    testRunner.Given("I have searched for \"milk\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 45
+    testRunner.When("I sort the results by \"PriceAsc\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 46
+    testRunner.Then("I should see the milk sorted from \"low-price-to-high-price\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
